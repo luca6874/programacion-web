@@ -1,6 +1,27 @@
+font-face {
+    font-family: 'AlwaysStart';
+    src: url('../assets/fonts/Always in the Start.ttf') format('truetype');
+}
+
+h1 {
+    font-family: 'AlwaysStart', cursive;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
 #forDeidad{
     background-color: rgb(23, 104, 34);
     color: white;
+    text-transform: uppercase;
 }
 
 #soriana{
