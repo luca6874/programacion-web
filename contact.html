@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>contacto</title>
+    <link rel="stylesheet" href="styles/contact.css">
 </head>
 <body>
 
@@ -15,13 +16,13 @@
 
     <a href="https://maps.app.goo.gl/Ro1aBYqVPeCFx8WY8">no carga el mapa? entra aqui</a>
 
-    <form>
+    <form id="formulario">
 
         <div>
-            <label for="correo" requiered>
+            <label for="correo">
                 Email
             </label>
-            <input type="email" name="" id="correo" required minlength="5" maxlength="15">
+            <input type="email" name="" id="correo" required minlength="5">
             <label for="contraseña">
                 Password
             </label>
@@ -36,7 +37,7 @@
             <label for="phone_number">
                 Teléfono
             </label>
-            <input type="number" placeholder="XXX-XXX-XXXX" id="phone_number">
+            <input type="tel" placeholder="XXX-XXX-XXXX" id="phone_number">
         </div>
 
         <div>

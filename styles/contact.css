@@ -1,0 +1,31 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    text-align: center;
+}
+
+#formulario {
+    background-color: white;
+    width: 400px;
+    max-width: 90%;
+    margin: 30px auto;
+    padding: 25px;
+    border: 2px solid #312f2f;
+    border-radius: 10px;
+}
+
+#formulario div {
+    margin-bottom: 20px;
+}
+
+#formulario label {
+    margin-right: 10px;
+}
+
