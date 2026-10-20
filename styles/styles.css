@@ -51,6 +51,20 @@ header#index{
     background-size: 20%;
 }
 
+.container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: rgb(197, 210, 223);
+    padding: 10px;
+}
+
+.conatiner div{
+    background-color: #f1f1f1;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 30px;
+    text-align: center;
+}
 
 body#index{
     background-color: rgb(63, 121, 121);
