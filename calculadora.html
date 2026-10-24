@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/calc.css">
     <title>Calculadora</title>
 </head>
 <body>
@@ -10,7 +11,7 @@
     <div class="calculadora">
 
         <div class="head">
-            <label id="calculadora_data" for="">
+            <label id="calculadora_data">
                 0
             </label>
         </div>
@@ -24,11 +25,51 @@
             <button onclick="addNumber(2)">
                 2
             </button>
+            <button onclick="addNumber(3)">
+                3
+            </button>
+            <button onclick="addNumber(4)">
+                4
+            </button>
+            <button onclick="addNumber(5)">
+                5
+            </button>
+            <button onclick="addNumber(6)">
+                6
+            </button>
+             <button onclick="addNumber(7)">
+                7
+            </button>
+            <button onclick="addNumber(8)">
+                8
+            </button>
+             <button onclick="addNumber(9)">
+                9
+            </button>
+            <button onclick="addNumber(0)">
+                0
+            </button>
             <button onclick="setOperation('+')">
                 +
             </button>
             <button onclick="setOperation('=')">
                 =
+            </button>
+            <button onclick="setOperation('*')">
+                *
+            </button>
+            <button onclick="setOperation('.')">
+                .
+            </button>
+            <button onclick="setOperation('/')">
+                /
+            </button>
+               
+            <button onclick="setOperation('-')">
+                -
+            </button>
+            <button onclick="_clear()">
+                CE
             </button>
         </div>
 
@@ -38,14 +79,21 @@
 
 <script>
 
+
+    const numeros = [];
     var num1 = 0
     var num2 = 0
     var ope = ""
 
     function _clear(){
         let data = document.getElementById("calculadora_data")
-
+        
         data.innerHTML = "0"
+
+        num1 = 0
+        num2 = 0
+        ope = ""
+
     }
 
     function addNumber(value){
@@ -67,19 +115,27 @@
         
         let data = document.getElementById("calculadora_data")
 
+        
+
         if(parseInt(data.innerHTML)>0 && num1==0){
             num1 = parseInt(data.innerHTML)
-            data.innerHTML = "0"
+           
         }
         
         if(parseInt(data.innerHTML)>0 && num2==0){
             num2 = parseInt(data.innerHTML)
-            data.innerHTML = "0"
+           
         }
 
+        data.innerText += _ope
+
         if(_ope == '='){
+
+            
             data.innerHTML = num1 + num2
+            
         }
+       
     }
 </script>
 </html>
