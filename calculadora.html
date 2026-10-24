@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +16,7 @@
             </label>
         </div>
         <div class="body">
-            <button onclick="_clear()">
+            <button onclick="clear_one()">
                 C
             </button>
             <button onclick="addNumber(1)">
@@ -81,61 +81,56 @@
 
 
     const numeros = [];
-    var num1 = 0
-    var num2 = 0
-    var ope = ""
+    
+    
+    var ope = "";
 
     function _clear(){
         let data = document.getElementById("calculadora_data")
+        numeros.length = 0;
         
-        data.innerHTML = "0"
+        data.innerHTML = "0";
+        ope = "";
 
-        num1 = 0
-        num2 = 0
-        ope = ""
+    }
 
+    function clear_one(){
+        let data = document.getElementById("calculadora_data")
+        numeros.pop();
+        data.innerHTML = numeros.join("");
     }
 
     function addNumber(value){
-        console.log(value)
 
-        let data = document.getElementById("calculadora_data")
-        console.log(data)
+        numeros.push(value);
 
-        if(parseInt(data.innerHTML)<=0){
-            data.innerText=value
-
-        }else{
-            data.innerText +=value
-        }
+        let data = document.getElementById("calculadora_data");
+       
+        data.innerHTML = numeros.join("");
+       
     }
 
     function setOperation(_ope){
-        ope = _ope
-        
-        let data = document.getElementById("calculadora_data")
-
-        
-
-        if(parseInt(data.innerHTML)>0 && num1==0){
-            num1 = parseInt(data.innerHTML)
-           
-        }
-        
-        if(parseInt(data.innerHTML)>0 && num2==0){
-            num2 = parseInt(data.innerHTML)
-           
-        }
-
-        data.innerText += _ope
-
-        if(_ope == '='){
-
-            
-            data.innerHTML = num1 + num2
-            
-        }
        
+        numeros.push(_ope);
+        
+        let data = document.getElementById("calculadora_data");
+
+        data.innerHTML = numeros.join("");
+        
+        //indeOf es clave
+
+        let posicion=numeros.indexOf("+");
+        let signo = numeros[posicion];
+
+        let parte1 = numeros.slice(0,posicion);
+        let parte2 = numeros.slice(posicion+1);
+
+        let num1 = parseInt(parte1.join(""));
+        let num2 = parseInt(parte2.join(""));
+
+        console.log(num1+num2);
+        console.log(signo);
     }
 </script>
 </html>
