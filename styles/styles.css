@@ -58,6 +58,14 @@ header#index{
     background-size: 20%;
 }
 
+#cal{
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 15px;
+    
+}
+
 .container{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
