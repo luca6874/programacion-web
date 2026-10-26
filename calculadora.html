@@ -81,7 +81,7 @@
 
 
     const numeros = [];
-    
+    const operadores = ["+","-","/","*","%"];
     
     var ope = "";
 
@@ -112,25 +112,74 @@
 
     function setOperation(_ope){
        
-        numeros.push(_ope);
-        
-        let data = document.getElementById("calculadora_data");
 
-        data.innerHTML = numeros.join("");
+        let data = document.getElementById("calculadora_data");
+        let posicion;
+        let operador;
+        let resultado=0;
+
+       
+        if(_ope === "="){
+
+            for(let i =0; i<numeros.length; i++){
+                
+                if(operadores.includes(numeros[i])){
+                    posicion = i;
+                    operador = numeros[i];
+                    
+                    break;
+                }
+            }
+            let parte1 = numeros.slice(0,posicion);
+            let parte2 = numeros.slice(posicion+1);
+    
+            let num1 = parseInt(parte1.join(""));
+            let num2 = parseInt(parte2.join(""));
+
+            switch (operador) {
+                case "+":
+                    resultado = num1 + num2;
+                    break;
+    
+                case "-":
+                    resultado =num1 - num2;
+                    break;
+    
+                case "*":
+                    resultado =num1 * num2;
+                    break;
+    
+                case "/":
+                   resultado =num1 / num2;
+                    break;
+            }
+
+            data.innerHTML = resultado;
+        }else{
+            numeros.push(_ope);
+            
+            data.innerHTML = numeros.join("");
+
+            
+        }
+
+       
+        
+                
+        
+
+        
+
+
+
         
         //indeOf es clave
 
-        let posicion=numeros.indexOf("+");
-        let signo = numeros[posicion];
+        
+        //let signo = numeros[posicion];
 
-        let parte1 = numeros.slice(0,posicion);
-        let parte2 = numeros.slice(posicion+1);
-
-        let num1 = parseInt(parte1.join(""));
-        let num2 = parseInt(parte2.join(""));
-
-        console.log(num1+num2);
-        console.log(signo);
+        
+       
     }
 </script>
 </html>

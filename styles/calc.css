@@ -1,3 +1,40 @@
 .calculadora{
-    
+    width: 300px;
+    margin: 50px auto;
+}
+
+.head {
+    height: 70px;
+    margin: 30px auto;
+    padding: 25px;
+    border: 2px solid #000000;
+    background-color: #f5f3f3;
+    border-radius: 10px;
+}
+
+.body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.body button {
+    height: 50px;
+}
+
+.body button:hover{
+    background-color: orange;
+    color: #f5f3f3;
+}
+
+html{
+    background-color: rgb(2, 2, 2);
+}
+
+.calculadora {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 15px;
 }
