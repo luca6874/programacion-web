@@ -16,9 +16,6 @@
             </label>
         </div>
         <div class="body">
-            <button onclick="clear_one()">
-                C
-            </button>
             <button onclick="addNumber(1)">
                 1
             </button>
@@ -27,6 +24,9 @@
             </button>
             <button onclick="addNumber(3)">
                 3
+            </button>
+            <button onclick="clear_one()">
+                C
             </button>
             <button onclick="addNumber(4)">
                 4
@@ -37,7 +37,10 @@
             <button onclick="addNumber(6)">
                 6
             </button>
-             <button onclick="addNumber(7)">
+            <button onclick="setOperation('+')">
+                +
+            </button>
+            <button onclick="addNumber(7)">
                 7
             </button>
             <button onclick="addNumber(8)">
@@ -46,20 +49,14 @@
              <button onclick="addNumber(9)">
                 9
             </button>
-            <button onclick="addNumber(0)">
-                0
-            </button>
-            <button onclick="setOperation('+')">
-                +
-            </button>
             <button onclick="setOperation('=')">
                 =
             </button>
+            <button onclick="addNumber(0)">
+                0
+            </button>
             <button onclick="setOperation('*')">
                 *
-            </button>
-            <button onclick="setOperation('.')">
-                .
             </button>
             <button onclick="setOperation('/')">
                 /
@@ -111,32 +108,35 @@
        
     }
 
-    function setOperation(_ope){
-       
-
+   
+    function setOperation(_ope) {
         let data = document.getElementById("calculadora_data");
-        let posicion;
-        let operador;
-        let resultado=0;
-        let posiciones = [];
-        let operadoresEncontrados = [];
-       
-       
-        if(_ope === "="){
 
+        if (_ope !== "=") {
+            if (numeros.length === 0 && operadores.includes(_ope)) {
+                return;
+            }
 
-            //esta cosa para buscar
+            numeros.push(_ope);
+            data.innerHTML = numeros.join("");
+            return;
+        }
 
-            for(let i =0; i<numeros.length; i++){
-                
-                if(operadores.includes(numeros[i])){
+        while (true) {
+            let posiciones = [];
+            let operadoresEncontrados = [];
+
+            for (let i = 0; i < numeros.length; i++) {
+                if (operadores.includes(numeros[i])) {
                     posiciones.push(i);
                     operadoresEncontrados.push(numeros[i]);
-                    
                 }
             }
 
-            //aca a dividir
+            if (operadoresEncontrados.length === 0) {
+                break;
+            }
+
             let indicePrioridad = -1;
 
             for (let i = 0; i < operadoresEncontrados.length; i++) {
@@ -150,87 +150,83 @@
                 }
             }
 
+            let indiceElegido;
 
             if (indicePrioridad !== -1) {
-                let posicionReal = posiciones[indicePrioridad];
-
-                
-
-
-                let inicio = posicionReal - 1;
-
-                while (inicio >= 0 && !operadores.includes(numeros[inicio])) {
-                    inicio--;
-                }
-
-                let fin = posicionReal + 1;
-
-                while (fin < numeros.length && !operadores.includes(numeros[fin])) {
-                    fin++;
-                }
-
-                let parteIzquierda = numeros.slice(inicio + 1, posicionReal);
-                let parteDerecha = numeros.slice(posicionReal + 1, fin);
-
-                
-                let num1 = parseInt(parteIzquierda.join(""));
-                let num2 = parseInt(parteDerecha.join(""));
-
-
-                operador = numeros[posicionReal];
-                //aaca c hacer
-                switch (operador) {
-                    case "+":
-                        resultado = num1 + num2;
-                        break;
-        
-                    case "-":
-                        resultado =num1 - num2;
-                        break;
-        
-                    case "*":
-                        resultado =num1 * num2;
-                        break;
-        
-                    case "/":
-                    resultado =num1 / num2;
-                        break;
-                }
-
-                numeros.splice(
-                    inicio + 1,
-                    fin - (inicio + 1),
-                    String(resultado)
-                );
-
-                data.innerHTML = numeros.join("");
-                //data.innerHTML = resultado;
-
-            }else if (operadoresEncontrados.length > 0) {
-             let posicionReal = posiciones[0];
-
-
-
-
-            }else{
-                numeros.push(_ope);
-                
-                data.innerHTML = numeros.join("");
-                
-                
+                indiceElegido = indicePrioridad;
+            } else {
+                indiceElegido = 0;
             }
-    }   
-        
-       
+
+            let posicionReal = posiciones[indiceElegido];
+            let operador = numeros[posicionReal];
+
+            let inicio = posicionReal - 1;
+
+            while (inicio >= 0 && !operadores.includes(numeros[inicio])) {
+                inicio--;
+            }
 
         
-        //indeOf es clave
+            let fin = posicionReal + 1;
+
+            while (fin < numeros.length && !operadores.includes(numeros[fin])) {
+                fin++;
+            }
+
+            
+            let parteIzquierda = numeros.slice(inicio + 1, posicionReal);
+            let parteDerecha = numeros.slice(posicionReal + 1, fin);
+
+            let num1 = parseFloat(parteIzquierda.join(""));
+            let num2 = parseFloat(parteDerecha.join(""));
+
+            let resultado;
+
+            
+            switch (operador) {
+                case "+":
+                    resultado = num1 + num2;
+                    break;
+
+                case "-":
+                    resultado = num1 - num2;
+                    break;
+
+                case "*":
+                    resultado = num1 * num2;
+                    break;
+
+                case "/":
+                    if (num2 === 0) {
+                        data.innerHTML = "Error: división entre 0";
+                        return;
+                    }
+                    resultado = num1 / num2;
+                    break;
+
+                case "%":
+                    if (num2 === 0) {
+                        data.innerHTML = "Error: módulo entre 0";
+                        return;
+                    }
+                    resultado = num1 % num2;
+                    break;
+            }
 
         
-        //let signo = numeros[posicion];
+            numeros.splice(
+                inicio + 1,
+                fin - (inicio + 1),
+                ...String(resultado)
+            );
 
         
-       
+        }
+
+    
+        data.innerHTML = numeros.join("");
     }
+
 </script>
 </html>
