@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos</title>
+</head>
+<body>
+    <div>
+        <form action="">
+            <fieldset>
+                <legend>Nombre(s)</legend>
+                <input type="text" name="" onkeydown="return validarLetra(event)" required>
+            </fieldset>
+            <fieldset>
+                <legend>Apellidos</legend>
+                <input type="text" name="">
+            </fieldset>
+        </form>
+    </div>
+
+    <button onclick="cambiarColor()"> cambiar color</button>
+
+    <script>
+
+        function validarLetra(e){
+            let numbers = [0,1,2,3,4,5,6,7,8,9]
+            console.log(e.key);
+            if(numbers.includes(e.key)){
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        function cambiarColor(){
+            document.body.style.backgroundColor="rgb(14,23,21)";
+        }
+    </script>
+
+
+</body>
+</html>
