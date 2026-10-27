@@ -1,0 +1,286 @@
+
+/* =========================================================
+   ESTILOS GENERALES DE LA PÁGINA
+   ========================================================= */
+
+/* Quitamos márgenes y hacemos que el tamaño de los elementos
+   incluya el padding y el borde */
+* {
+    box-sizing: border-box;
+}
+
+/* Estilos generales del cuerpo */
+body {
+    margin: 0;
+    padding: 30px;
+
+    /* Tipo de letra */
+    font-family: Arial, sans-serif;
+
+    /* Color de fondo */
+    background-color: #f2f4f7;
+
+    /* Color general del texto */
+    color: #333;
+}
+
+
+/* =========================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================= */
+
+/* El div que contiene el formulario */
+body > div {
+    width: 100%;
+    max-width: 650px;
+
+    /* Centrar horizontalmente */
+    margin: 0 auto;
+
+    /* Fondo blanco */
+    background-color: white;
+
+    /* Espacio interno */
+    padding: 30px;
+
+    /* Bordes redondeados */
+    border-radius: 12px;
+
+    /* Sombra alrededor del formulario */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================================
+   FORMULARIO
+   ========================================================= */
+
+/* Formulario */
+form {
+    width: 100%;
+}
+
+
+/* =========================================================
+   FIELDSET
+   ========================================================= */
+
+/* Cada grupo del formulario */
+fieldset {
+    border: 1px solid #ccc;
+
+    /* Espacio interno */
+    padding: 20px;
+
+    /* Espacio entre cada fieldset */
+    margin-bottom: 20px;
+
+    /* Bordes redondeados */
+    border-radius: 8px;
+
+    /* Fondo ligeramente gris */
+    background-color: #fafafa;
+}
+
+
+/* Título de cada grupo */
+legend {
+    padding: 0 10px;
+
+    /* Texto */
+    font-weight: bold;
+    font-size: 18px;
+
+    /* Color */
+    color: #333;
+}
+
+
+/* =========================================================
+   INPUTS Y TEXTAREA
+   ========================================================= */
+
+/* Estilos generales para inputs y textarea */
+input,
+textarea {
+    width: 100%;
+
+    /* Espacio interno */
+    padding: 10px;
+
+    /* Tamaño de letra */
+    font-size: 16px;
+
+    /* Borde */
+    border: 1px solid #bbb;
+
+    /* Bordes redondeados */
+    border-radius: 6px;
+
+    /* Para que el textarea pueda crecer verticalmente */
+    font-family: inherit;
+
+    /* Animación suave */
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+
+/* Cuando hacemos clic dentro de un input */
+input:focus,
+textarea:focus {
+    /* Cambia el color del borde */
+    border-color: #4a6cf7;
+
+    /* Quita el borde de enfoque predeterminado */
+    outline: none;
+
+    /* Agrega un pequeño resplandor */
+    box-shadow: 0 0 5px rgba(74, 108, 247, 0.3);
+}
+
+
+/* =========================================================
+   TEXTAREA
+   ========================================================= */
+
+/* Personalizamos específicamente el área de biografía */
+textarea {
+    /* Altura inicial */
+    min-height: 150px;
+
+    /* Permite cambiar su tamaño verticalmente */
+    resize: vertical;
+}
+
+
+/* =========================================================
+   RADIO BUTTONS
+   ========================================================= */
+
+/* Los radio buttons NO deben ocupar todo el ancho */
+input[type="radio"] {
+    width: auto;
+
+    /* Dejamos espacio entre el radio y el texto */
+    margin-right: 5px;
+}
+
+
+/* Labels de los radio buttons */
+label {
+    margin-right: 15px;
+}
+
+
+/* =========================================================
+   BOTÓN GUARDAR
+   ========================================================= */
+
+/* Botón que está dentro del formulario */
+form button {
+    width: 100%;
+
+    padding: 12px;
+
+    /* Tamaño del texto */
+    font-size: 16px;
+    font-weight: bold;
+
+    /* Color del texto */
+    color: white;
+
+    /* Color de fondo */
+    background-color: #4a6cf7;
+
+    /* Quitamos el borde */
+    border: none;
+
+    /* Bordes redondeados */
+    border-radius: 6px;
+
+    /* Cambia el cursor */
+    cursor: pointer;
+
+    /* Transición para el hover */
+    transition: background-color 0.2s;
+}
+
+
+/* Cuando pasamos el mouse sobre Guardar */
+form button:hover {
+    background-color: #3451c6;
+}
+
+
+/* =========================================================
+   BOTÓN CAMBIAR COLOR
+   ========================================================= */
+
+/* El segundo botón está fuera del formulario */
+body > button {
+    display: block;
+
+    /* Centrarlo */
+    margin: 20px auto;
+
+    padding: 10px 20px;
+
+    font-size: 15px;
+
+    color: white;
+
+    background-color: #333;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+
+/* Cuando pasamos el mouse sobre Cambiar color */
+body > button:hover {
+    background-color: #555;
+}
+
+
+/* =========================================================
+   DISEÑO RESPONSIVO
+   ========================================================= */
+
+/* Estos estilos se aplican cuando la pantalla
+   tiene un ancho máximo de 600px */
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px;
+    }
+
+    body > div {
+        padding: 20px;
+    }
+
+    fieldset {
+        padding: 15px;
+    }
+
+    legend {
+        font-size: 16px;
+    }
+}
+
+/* Estilo del texto que muestra el contador */
+#biografia + p {
+    margin-top: 8px;
+    margin-bottom: 0;
+    text-align: right;
+    font-size: 13px;
+    color: #666;
+}
+
+/* Resalta el número de caracteres */
+#contador {
+    font-weight: bold;
+    color: #4a6cf7;
+}

@@ -18,6 +18,7 @@ h1 {
 
 a {
     text-decoration: none;
+    color: #f1f1f1;
 }
 
 a:hover {
@@ -25,21 +26,23 @@ a:hover {
 }
 
 
-#forDeidad{
-    background-color: rgb(23, 104, 34);
-    color: white;
-    text-transform: uppercase;
-}
 
 #soriana{
-    background-color: rgb(209, 13, 13);
-    color: yellow;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 15px;
+    
 }
 
-#forDeidad:hover{
-    background-color:white;
-    color: rgb(23, 104, 34);
+#soriana2{
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 15px;
+    
 }
+
 
 #soriana:hover{
     background-color: yellow;
@@ -58,13 +61,7 @@ header#index{
     background-size: 20%;
 }
 
-#cal{
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #222;
-    border-radius: 15px;
-    
-}
+
 
 .container{
     display: grid;

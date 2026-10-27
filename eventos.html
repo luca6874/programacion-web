@@ -1,38 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/eventos.css">
     <title>Eventos</title>
 </head>
 <body>
     <div>
-        <form action="">
-            <fieldset>
-                <legend>Nombre(s)</legend>
-                <input type="text" name="" onkeydown="return validarLetra(event)" required>
+        <form>
+			<fieldset>
+				<legend>Nombres</legend>
+				<input type="text" name="" onkeydown="return soloLetras(event)" required>
+			</fieldset>
+
+			<fieldset>
+				<legend>Apellidos</legend>
+				<input type="text" name="" onkeydown="return soloLetras(event)" required>
+			</fieldset>
+
+			<fieldset>
+				<legend>Teléfono</legend>
+                <input type="text" inputmode="numeric" onkeypress="return soloNumeros(event)" maxlength="10" required>			
             </fieldset>
-            <fieldset>
-                <legend>Apellidos</legend>
-                <input type="text" name="">
-            </fieldset>
-        </form>
+
+			<fieldset>
+				<legend>Correo electrónico</legend>
+				<input type="email" name="" onkeydown="return validateEmail(event)" required>
+			</fieldset>
+
+			<fieldset>
+				<legend>Género</legend>
+				 <label>
+                    Masculino
+                </label>
+                <input type="radio" name="gender" value="m">
+                <label>
+                    Femenino
+                </label>
+                <input type="radio" name="gender" value="f">
+			</fieldset>
+
+			<fieldset>
+				<legend>Biografía</legend>
+                <!-- alch no jalo con key press, gpt dice q nomas no agarra y mejor asi lo deje-->
+				<textarea onkeydown="return contadorCaracteres(event)" required></textarea>
+                <p>Caracteres: <span id="contador">0</span> / 200</p>
+			</fieldset>
+
+			<button>
+				Guardar
+			</button>
+		</form>
     </div>
 
     <button onclick="cambiarColor()"> cambiar color</button>
 
     <script>
 
-        function validarLetra(e){
-            let numbers = [0,1,2,3,4,5,6,7,8,9]
-            console.log(e.key);
-            if(numbers.includes(e.key)){
-                return false;
-            }else{
+        let contador = 0;
+
+        function soloLetrasYnumeros(e) {
+		    var tecla = e.key.toLowerCase();
+		    return /^[a-zñáéíóúü\s0-9.]+$/.test(tecla);
+		}
+
+        function validateEmail(e) {
+            
+            var tecla = e.key
+            if (tecla === "Backspace" || tecla === "Delete") {
                 return true;
             }
+           return /^[a-zA-Z0-9@._%+-]$/.test(tecla);
+        }
+        
+
+        function contadorCaracteres(e){
+
+            let data = document.getElementById("contador");
+           
+            var tecla = e.key
+
+            if (tecla === "Backspace" || tecla === "Delete") {
+                
+                if(contador>0){
+                    contador--;
+                    console.log(contador) 
+
+                } 
+               
+
+                
+            }else{
+                if(contador >= 200){
+                    return false;
+                }
+                
+                contador++;
+                console.log(contador)
+
+            }
+
+            data.innerHTML = contador;
+            
         }
 
+		function soloLetras(e) {
+		    var tecla = e.key.toLowerCase();
+		    return /^[a-zñáéíóúü\s]$/i.test(tecla);
+		}
+
+		/*=============================================
+		    =   Funcion solo números    =
+		=============================================*/
+
+		function soloNumeros(e) {
+		    var tecla = e.key.toLowerCase();
+		    return /^[0-9]$/.test(tecla);
+		}
+
+		function validarletra(e)
+		{
+			const numbers = [0,1,2,3,4,5,6,7,8,9]
+			console.log(e.key)
+			if (numbers.includes(parseInt(e.key)))	
+				return false;
+
+			return true
+		}
         function cambiarColor(){
             document.body.style.backgroundColor="rgb(14,23,21)";
         }
