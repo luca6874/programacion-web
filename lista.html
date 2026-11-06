@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/lista.css">
+    <title>To-do list</title>
+</head>
+<body>
+    <main class="contenedor">
+
+        <h1>Mis tareas</h1>
+
+        <div class="entrada">
+            <input type="text" id="nuevaTarea" placeholder="Escribe una tarea...">
+            <button id="agregarTarea">Agregar</button>
+        </div>
+
+        <ul id="listaTareas">
+            
+        </ul>
+
+    </main>
+    
+</body>
+
+<script>
+
+
+    let tareas = [];
+
+    const inputTarea = document.getElementById("nuevaTarea");
+    const botonAgregar = document.getElementById("agregarTarea");
+    const listaTareas = document.getElementById("listaTareas");
+
+    function cargarTareas() {
+        let datos = localStorage.getItem("tareas");
+
+        if (datos !== null) {
+            try {
+                tareas = JSON.parse(datos);
+
+                if (!Array.isArray(tareas)) {
+                    tareas = [];
+                }
+            } catch (error) {
+                tareas = [];
+            }
+        }
+
+        mostrarTareas();
+    }
+
+    function guardarTareas() {
+        localStorage.setItem("tareas", JSON.stringify(tareas));
+    }
+
+    function mostrarTareas() {
+        listaTareas.innerHTML = "";
+
+        tareas.forEach((tarea, index) => {
+            let elemento = document.createElement("li");
+
+            if (tarea.completada) {
+                elemento.classList.add("completada");
+            }
+
+            let checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.checked = tarea.completada;
+
+            checkbox.addEventListener("change", () => {
+                tareas[index].completada = checkbox.checked;
+                guardarTareas();
+                mostrarTareas();
+            });
+
+            let texto = document.createElement("span");
+            texto.textContent = tarea.texto;
+
+            let botonEliminar = document.createElement("button");
+            botonEliminar.textContent = "Eliminar";
+
+            botonEliminar.addEventListener("click", () => {
+                eliminarTarea(index);
+            });
+
+            elemento.appendChild(checkbox);
+            elemento.appendChild(texto);
+            elemento.appendChild(botonEliminar);
+
+            listaTareas.appendChild(elemento);
+        });
+    }
+
+    function agregarTarea() {
+        let texto = inputTarea.value.trim();
+
+        if (texto === "") {
+            alert("Escribe una tarea antes de agregarla.");
+            return;
+        }
+
+        tareas.push({
+            texto: texto,
+            completada: false
+        });
+
+        guardarTareas();
+        mostrarTareas();
+
+        inputTarea.value = "";
+        inputTarea.focus();
+    }
+
+    function eliminarTarea(index) {
+        tareas.splice(index, 1);
+
+        guardarTareas();
+        mostrarTareas();
+    }
+
+    botonAgregar.addEventListener("click", agregarTarea);
+
+    inputTarea.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            agregarTarea();
+        }
+    });
+
+    cargarTareas();
+
+</script>
+
+</html>

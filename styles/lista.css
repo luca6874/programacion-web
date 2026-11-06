@@ -1,0 +1,157 @@
+
+/* Reinicio de estilos predeterminados del navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Configuración general de la página */
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+
+    /* Fondo dividido en dos colores */
+    background: linear-gradient(
+        to bottom,
+        #6558a8 0%,
+        #6558a8 50%,
+        #e8e7ef 50%,
+        #e8e7ef 100%
+    );
+
+    /* Centrar el contenido */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+/* Contenedor principal de la aplicación */
+.contenedor {
+    background-color: white;
+    width: 100%;
+    max-width: 450px;
+    padding: 30px;
+    border-radius: 12px;
+
+    /* Sombra para dar profundidad */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Título principal */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+/* Contenedor del campo de texto y botón */
+.entrada {
+    display: flex;
+    gap: 10px;
+}
+
+/* Campo de texto para introducir tareas */
+input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+}
+
+/* Cambiar el borde cuando se selecciona el input */
+input:focus {
+    border-color: #6558a8;
+}
+
+/* Estilos generales de los botones */
+button {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #6558a8;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+/* Efecto al pasar el cursor por los botones */
+button:hover {
+    background-color: #51458f;
+}
+
+/* Lista donde se mostrarán las tareas */
+#listaTareas {
+    margin-top: 25px;
+    list-style: none;
+}
+
+/* Cada elemento individual de la lista */
+#listaTareas li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+    background-color: #f3f2f8;
+    border-radius: 6px;
+    color: #333;
+}
+
+/* Checkbox de cada tarea */
+#listaTareas li input[type="checkbox"] {
+    flex: 0 0 auto;
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+    accent-color: #6558a8;
+}
+
+/* Texto de cada tarea */
+#listaTareas li span {
+    flex: 1;
+    overflow-wrap: anywhere;
+    font-size: 14px;
+}
+
+/* Apariencia de las tareas completadas */
+#listaTareas li.completada span {
+    text-decoration: line-through;
+    color: #999;
+}
+
+/* Botón para eliminar una tarea */
+#listaTareas li button {
+    background-color: #dc5252;
+    padding: 8px 10px;
+    font-size: 12px;
+}
+
+/* Efecto del botón eliminar */
+#listaTareas li button:hover {
+    background-color: #b93636;
+}
+
+/* Ajustes para dispositivos pequeños */
+@media (max-width: 480px) {
+
+    .contenedor {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .entrada {
+        flex-direction: column;
+    }
+
+}
