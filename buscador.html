@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rick and Morty - Buscador</title>
+
+    <link rel="stylesheet" href="styles/rick.css">
+
+    
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="header">
+            <h1>Rick and Morty</h1>
+            <p>Buscador de personajes</p>
+        </header>
+
+        <section class="search-section">
+
+            <input
+                type="text"
+                id="characterInput"
+                placeholder="Escribe el nombre de un personaje..."
+            >
+
+            <button id="searchButton">
+                Buscar por Nombre
+            </button>
+
+            <button id="randomButton" class="random-button">
+                Personaje Aleatorio
+            </button>
+
+        </section>
+
+        <p id="message"></p>
+
+        <section class="character-card" id="characterCard">
+
+            <img
+                id="characterImage"
+                src=""
+                alt="Imagen del personaje"
+            >
+
+            <div class="character-info">
+
+                <h2 id="characterName">Nombre del personaje</h2>
+
+                <p>
+                    <strong>Especie:</strong>
+                    <span id="characterSpecies">---</span>
+                </p>
+
+                <p>
+                    <strong>Estado:</strong>
+                    <span id="characterStatus">---</span>
+                </p>
+
+            </div>
+
+        </section>
+
+        <footer class="footer">
+            <p>Datos proporcionados por Rick and Morty API</p>
+        </footer>
+
+    </main>
+
+</body>
+
+<script>
+
+
+const characterInput = document.getElementById("characterInput");
+
+const searchButton = document.getElementById("searchButton");
+const randomButton = document.getElementById("randomButton");
+
+const message = document.getElementById("message");
+const characterCard = document.getElementById("characterCard");
+
+const characterImage = document.getElementById("characterImage");
+const characterName = document.getElementById("characterName");
+const characterSpecies = document.getElementById("characterSpecies");
+const characterStatus = document.getElementById("characterStatus");
+
+
+
+function showCharacter(data) {
+
+    characterCard.style.display = "block";
+
+    characterImage.src = data.image;
+    characterName.textContent = data.name;
+    characterSpecies.textContent = data.species;
+    characterStatus.textContent = data.status;
+
+    message.textContent = "";
+
+    if (data.status === "Alive") {
+        characterStatus.style.color = "#97ce4c";
+    } 
+    else if (data.status === "Dead") {
+        characterStatus.style.color = "#ff5555";
+    } 
+    else {
+        characterStatus.style.color = "#cccccc";
+    }
+}
+
+
+
+function showError() {
+
+    message.textContent = "Personaje no encontrado. Intenta de nuevo.";
+
+    characterCard.style.display = "none";
+}
+
+
+
+async function searchCharacter() {
+
+    const name = characterInput.value.trim();
+
+    if (name === "") {
+        message.textContent = "Escribe el nombre de un personaje.";
+        characterCard.style.display = "none";
+        return;
+    }
+
+    message.textContent = "Buscando personaje...";
+
+    try {
+
+        const response = await fetch(
+            `https://rickandmortyapi.com/api/character/?name=${encodeURIComponent(name)}`
+        );
+
+        if (!response.ok) {
+            throw new Error("Personaje no encontrado");
+        }
+
+        const data = await response.json();
+
+        const character = data.results[0];
+
+        showCharacter(character);
+
+    } 
+    catch (error) {
+
+        showError();
+
+    }
+}
+
+
+
+async function randomCharacter() {
+
+    const randomId = Math.floor(Math.random() * 826) + 1;
+
+    message.textContent = "Buscando personaje aleatorio...";
+
+    try {
+
+        const response = await fetch(
+            `https://rickandmortyapi.com/api/character/${randomId}`
+        );
+
+        if (!response.ok) {
+            throw new Error("No se pudo encontrar el personaje");
+        }
+
+        const data = await response.json();
+
+        showCharacter(data);
+
+    } 
+    catch (error) {
+
+        showError();
+
+    }
+}
+
+
+
+
+searchButton.addEventListener("click", searchCharacter);
+
+randomButton.addEventListener("click", randomCharacter);
+
+
+
+characterInput.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+        searchCharacter();
+    }
+
+});
+
+
+
+characterCard.style.display = "none";
+
+</script>
+</html>

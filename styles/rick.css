@@ -1,0 +1,214 @@
+
+/* =====================================
+   CONFIGURACIÓN GENERAL
+===================================== */
+
+/* Elimina márgenes y rellenos predeterminados */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos generales del documento */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #151515;
+    color: white;
+
+    /* Centra el contenido horizontalmente */
+    display: flex;
+    justify-content: center;
+
+    min-height: 100vh;
+}
+
+
+/* =====================================
+   CONTENEDOR PRINCIPAL
+===================================== */
+
+.container {
+    width: 90%;
+    max-width: 600px;
+
+    margin-top: 50px;
+    margin-bottom: 30px;
+
+    text-align: center;
+}
+
+
+/* =====================================
+   ENCABEZADO
+===================================== */
+
+.header {
+    margin-bottom: 30px;
+}
+
+/* Título principal */
+.header h1 {
+    font-size: 38px;
+    color: #97ce4c;
+    margin-bottom: 10px;
+}
+
+/* Subtítulo */
+.header p {
+    color: #cccccc;
+    font-size: 18px;
+}
+
+
+/* =====================================
+   SECCIÓN DE BÚSQUEDA
+===================================== */
+
+.search-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    margin-bottom: 25px;
+}
+
+/* Campo de texto */
+.search-section input {
+    padding: 14px;
+    border: 2px solid #97ce4c;
+    border-radius: 8px;
+
+    font-size: 16px;
+    outline: none;
+}
+
+/* Efecto al seleccionar el input */
+.search-section input:focus {
+    border-color: #b7e778;
+}
+
+/* Estilos generales de los botones */
+.search-section button {
+    padding: 14px;
+
+    background-color: #97ce4c;
+    color: #151515;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Efecto al pasar el mouse */
+.search-section button:hover {
+    background-color: #b7e778;
+    transform: scale(1.02);
+}
+
+/* Botón secundario */
+.search-section .random-button {
+    background-color: #3c8dad;
+    color: white;
+}
+
+/* Efecto del botón aleatorio */
+.search-section .random-button:hover {
+    background-color: #55b5d8;
+}
+
+
+/* =====================================
+   MENSAJES DE ESTADO
+===================================== */
+
+#message {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #97ce4c;
+}
+
+
+/* =====================================
+   TARJETA DEL PERSONAJE
+===================================== */
+
+.character-card {
+    background-color: #242424;
+
+    border: 2px solid #97ce4c;
+    border-radius: 15px;
+
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+/* Imagen del personaje */
+.character-card img {
+    width: 220px;
+    max-width: 100%;
+
+    height: auto;
+
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+/* Información del personaje */
+.character-info h2 {
+    color: #97ce4c;
+    font-size: 26px;
+
+    margin-bottom: 15px;
+}
+
+/* Párrafos de información */
+.character-info p {
+    font-size: 17px;
+    margin: 10px 0;
+    color: #dddddd;
+}
+
+/* Valores de especie y estado */
+.character-info span {
+    color: white;
+}
+
+
+/* =====================================
+   PIE DE PÁGINA
+===================================== */
+
+.footer {
+    color: #888888;
+    font-size: 13px;
+    margin-top: 20px;
+}
+
+
+/* =====================================
+   DISEÑO RESPONSIVO
+===================================== */
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 480px) {
+
+    .container {
+        width: 95%;
+        margin-top: 30px;
+    }
+
+    .header h1 {
+        font-size: 30px;
+    }
+
+    .character-card img {
+        width: 180px;
+    }
+
+}
